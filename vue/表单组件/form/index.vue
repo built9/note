@@ -19,6 +19,8 @@
 import myInput from "./myInput.vue";
 import myFormItem from "./myFormItem.vue";
 import myForm from "./myForm.vue";
+import Notice from "../Notice";
+import create from "@/utils/create";
 
 export default {
   components: {
@@ -40,13 +42,21 @@ export default {
   },
   methods: {
     onLogin() {
+      let msg
       this.$refs.loginForm.validate((isValid) => {
         if (isValid) {
-          alert("login");
+          msg="login"
         } else {
-          alert("err");
+          msg="err"
         }
       });
+
+      const notice = create(Notice,{
+        title:'xxx',
+        message:msg,
+        duration:3000
+      })
+      notice.show()
     }
   }
 };
